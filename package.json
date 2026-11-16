@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "prebuild": "node -e \"require('fs').rmSync('.next/cache/turbopack',{recursive:true,force:true})\""
   },
   "dependencies": {
     "leaflet": "^1.9.4",

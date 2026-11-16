@@ -1,8 +1,6 @@
 import { Resend } from 'resend';
 import { NextResponse } from 'next/server';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(request: Request) {
   try {
     const { name, email, message } = await request.json();
@@ -24,6 +22,16 @@ export async function POST(request: Request) {
       );
     }
 
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!apiKey) {
+      console.error('RESEND_API_KEY is not configured');
+      return NextResponse.json(
+        { error: 'Email could not be sent.' },
+        { status: 500 }
+      );
+    }
+
+    const resend = new Resend(apiKey);
     const { data, error } = await resend.emails.send({
       from: 'Website Enquiries <onboarding@resend.dev>',
       to: process.env.CONTACT_EMAIL || 'join.whu.uk@gmail.com',
