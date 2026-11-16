@@ -91,6 +91,17 @@ export default function Home() {
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }, []);
 
+  // Open the full directory on the page holding this partner and scroll to their bio.
+  const jumpToBio = (name: string) => {
+    const index = partnersBase.findIndex((p) => p.name === name);
+    if (index < 0) return;
+    setShowAllPartners(true);
+    setPartnerPage(Math.floor(index / partnersPerPage) + 1);
+    setTimeout(() => {
+      document.getElementById(`partner-${index}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 80);
+  };
+
   // Bios can contain [text](url) links. Plain version (for hover cards) and clickable version (for the directory).
   const plainAbout = (text: string) => text.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1");
   const richAbout = (text: string) =>
@@ -132,7 +143,7 @@ export default function Home() {
           <div className="md:w-1/2 flex flex-col items-center text-center md:translate-y-6 md:-translate-x-4">            <h1 className="font-black text-[8rem] md:text-[clamp(12rem,18vw,14rem)] leading-[0.85] tracking-tighter text-white drop-shadow-[0_6px_10px_rgba(90,20,55,0.25)] select-none">
             WHU
           </h1>
-            <div className="text-white font-extrabold text-3xl md:text-5xl lg:text-6xl leading-tight px-6 py-3 mt-6">
+            <div className="text-white font-extrabold text-2xl sm:text-3xl md:text-2xl lg:text-4xl whitespace-nowrap leading-tight px-2 py-3 mt-6">
               Women's Health Union
             </div>
           </div>
@@ -141,10 +152,10 @@ export default function Home() {
             <div className="w-full max-w-lg bg-white text-[#1E1B1D] rounded-3xl p-8 md:p-10 shadow-xl border border-black/5 transform md:rotate-1 hover:rotate-0 transition-transform duration-300">
               <h3 className="font-bold leading-snug">
                 <span className="font-black text-4xl md:text-5xl tracking-tight">
-                  <span className="text-[#D45995]">Fewer than </span><span className="text-[#FACC15]">5%</span>
+                  <span className="text-[#D45995]">Fewer than </span><span className="text-[#EAB308]">5%</span>
                 </span>
                 <span className="text-[#1E1B1D] font-extrabold leading-snug block mt-4 text-2xl md:text-3xl">
-                  of UK universities have women’s health societies. Let’s change this!
+                  of UK universities have women’s health societies. <span className="text-[#D45995] whitespace-nowrap">Let’s change this!</span>
                 </span>
               </h3>
             </div>
@@ -182,14 +193,13 @@ export default function Home() {
             id="chapters"
             className="scroll-mt-28 px-2 md:px-4 py-10 md:py-14"
           >
-            <header className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6 pb-6 ">
-              <div className="flex flex-col gap-1">
-                <h2 className="font-extrabold text-2xl md:text-4xl text-[#1E1B1D] tracking-tight">
-                  Our Student Chapters
-                </h2>
-              </div>
+            <header className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-center justify-items-center mb-10 gap-6 pb-6">
+              <div className="hidden md:block" aria-hidden="true" />
+              <h2 className="font-extrabold text-2xl md:text-4xl text-[#1E1B1D] tracking-tight text-center">
+                Our Student Chapters
+              </h2>
               {/* Toggle Switch */}
-              <div className="flex items-center bg-[#F1EEF4] rounded-full p-1 border border-black/5">
+              <div className="flex items-center bg-[#F1EEF4] rounded-full p-1 border border-black/5 md:justify-self-end">
                 <button
                   onClick={() => setViewMode("list")}
                   aria-pressed={viewMode === "list"}
@@ -262,21 +272,21 @@ export default function Home() {
           >
             <div className="marquee-track py-6">
               {marqueeItems.map((partner, i) => {
-                const primaryLink = partner.links[0]?.url ?? "#";
-                const hasValidLink = Boolean(primaryLink && primaryLink !== "#");
 
                 return (
-                  <a
+                  <div
                     key={`${partner.name}-${i}`}
-                    href={hasValidLink ? primaryLink : undefined}
-                    target={hasValidLink ? "_blank" : undefined}
-                    rel={hasValidLink ? "noopener noreferrer" : undefined}
-                    onClick={(e) => {
-                      if (!hasValidLink) {
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`Read ${partner.name}'s full bio`}
+                    onClick={() => jumpToBio(partner.name)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
                         e.preventDefault();
+                        jumpToBio(partner.name);
                       }
                     }}
-                    className={`relative flex-shrink-0 mx-4 w-72 h-64 md:w-80 md:h-72 rounded-2xl bg-white shadow-md hover:shadow-xl transition-shadow duration-300 group overflow-hidden focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D45995] ${hasValidLink ? "cursor-pointer" : "cursor-default"}`}
+                    className="relative flex-shrink-0 mx-4 w-72 h-64 md:w-80 md:h-72 rounded-2xl bg-white shadow-md hover:shadow-xl transition-shadow duration-300 group overflow-hidden focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D45995] cursor-pointer"
                   >
                     {/* Full-card image */}
                     {partner.logo ? (
@@ -300,8 +310,8 @@ export default function Home() {
                         {plainAbout(partner.about)}
                       </p>
                       {partner.about.length > 200 && (
-                        <span className="text-[#FDE047] text-xs font-bold text-center">
-                          Bio continues — tap “Show all partners” below to read it in full ↓
+                        <span className="text-white/90 text-xs font-semibold underline underline-offset-4 text-center">
+                          Read full bio →
                         </span>
                       )}
                     </div>
@@ -312,7 +322,7 @@ export default function Home() {
                         {partner.name}
                       </p>
                     </div>
-                  </a>
+                  </div>
                 );
               })}
             </div>
@@ -355,7 +365,8 @@ export default function Home() {
               {visiblePartners.map((partner, index) => (
                 <article
                   key={`${partner.name}-${partnerPage}-${index}`}
-                  className="grid grid-cols-1 md:grid-cols-[15rem_minmax(0,1fr)] gap-6 md:gap-12 py-10"
+                  id={`partner-${partnersBase.indexOf(partner)}`}
+                  className="scroll-mt-28 grid grid-cols-1 md:grid-cols-[15rem_minmax(0,1fr)] gap-6 md:gap-12 py-10"
                 >
                   {/* Left: logo, name and links */}
                   <div className="flex flex-col items-start">
@@ -476,7 +487,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
 
             {/* Start a Chapter */}
-            <div className="flex flex-col gap-4 rounded-3xl bg-gradient-to-br from-[#A82F6B] to-[#7E2253] text-white p-8 md:p-10 shadow-xl">
+            <div className="flex flex-col gap-4 rounded-3xl bg-gradient-to-br from-[#CC4F8F] to-[#B2407D] text-white p-8 md:p-10 shadow-xl">
               <h3 className="font-black text-3xl md:text-5xl tracking-tight">
                 Start a <span className="text-[#FDE047]">Chapter</span>
               </h3>
@@ -496,7 +507,7 @@ export default function Home() {
                   <>A <strong className="text-[#FDE047]">national network</strong> of chapters to collaborate and run events with</>,
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <span aria-hidden="true" className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-[#FDE047] text-[#7E2253] text-sm font-black">✓</span>
+                    <span aria-hidden="true" className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-[#FDE047] text-[#B2407D] text-sm font-black">✓</span>
                     <span className="leading-snug">{item}</span>
                   </li>
                 ))}
@@ -504,7 +515,7 @@ export default function Home() {
             </div>
 
             {/* Become a Partner */}
-            <div className="flex flex-col gap-4 rounded-3xl bg-gradient-to-br from-[#A82F6B] to-[#7E2253] text-white p-8 md:p-10 shadow-xl">
+            <div className="flex flex-col gap-4 rounded-3xl bg-gradient-to-br from-[#CC4F8F] to-[#B2407D] text-white p-8 md:p-10 shadow-xl">
               <h3 className="font-black text-3xl md:text-5xl tracking-tight">
                 Become a <span className="text-[#FDE047]">Partner</span>
               </h3>
