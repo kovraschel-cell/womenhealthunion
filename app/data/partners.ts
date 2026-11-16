@@ -35,7 +35,7 @@ const partners: PartnerProfile[] = [
   },
   {
     name: "Imogen Clarke",
-    about: "mogen is the Director for HerSay.Uk, building a community to help close the gender health gap. Working across women's health for 5+ years, with a strong qualitative research background (MRes Security, Conflict and Human Rights & BA Anthropology), Imogen’s goal is to use these ethical research skills to help close the gender data gap across a whole range of sectors, starting with health.  Imogen is also the Partnerships & Growth Manager at Micrima. Here she is focused on relationship building across the private healthcare and employer landscape for a CE marked breast medical device. Previously, she led high-value partners for W Group's global Women's Health Week conferences and accelerators. Building a valuable global network focused on accelerating Femtech.",
+    about: "Imogen is the Director for HerSay.Uk, building a community to help close the gender health gap. Working across women's health for 5+ years, with a strong qualitative research background (MRes Security, Conflict and Human Rights & BA Anthropology), Imogen’s goal is to use these ethical research skills to help close the gender data gap across a whole range of sectors, starting with health.  Imogen is also the Partnerships & Growth Manager at Micrima. Here she is focused on relationship building across the private healthcare and employer landscape for a CE marked breast medical device. Previously, she led high-value partners for W Group's global Women's Health Week conferences and accelerators. Building a valuable global network focused on accelerating Femtech.",
     logo: "/logos/imogenclarke.jpg",
     links: [
       { label: "Website", url: "#" },
@@ -44,10 +44,11 @@ const partners: PartnerProfile[] = [
   },
   {
     name: "HerSay",
-    about: "HerSay is focused on reducing the gender health gap. We host educational talks & wellness activities to bring women together and open up conversation around some of the biggest gaps in women's health and lived experiences. Women all over the UK can also sign up to express interest in participating in research, which is fed back into products, spaces and businesses who want to design with women in mind. Follow on Instagram @hersay.uk or LinkedIn HerSay.uk",
+    about: "HerSay is focused on reducing the gender health gap. We host educational talks & wellness activities to bring women together and open up conversation around some of the biggest gaps in women's health and lived experiences.\n\nWomen all over the UK can also sign up to express interest in participating in research, which is fed back into products, spaces and businesses who want to design with women in mind.\n\nFollow on Instagram [@hersay.uk](https://www.instagram.com/hersay.uk/) or LinkedIn [HerSay.uk](https://www.linkedin.com/company/hersay-uk/)",
     logo: "/logos/hersay.png",
     links: [
-      { label: "Website", url: "#" },
+      { label: "Instagram", url: "https://www.instagram.com/hersay.uk/" },
+      { label: "LinkedIn", url: "https://www.linkedin.com/company/hersay-uk/" },
     ],
   },
   {
