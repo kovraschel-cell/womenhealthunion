@@ -26,7 +26,7 @@ export async function POST(request: Request) {
     if (!apiKey) {
       console.error('RESEND_API_KEY is not configured');
       return NextResponse.json(
-        { error: 'Email could not be sent.' },
+        { error: 'The email service is not set up yet (missing RESEND_API_KEY).' },
         { status: 500 }
       );
     }
@@ -43,7 +43,7 @@ export async function POST(request: Request) {
     if (error) {
       console.error('Resend error:', error);
       return NextResponse.json(
-        { error: 'Email could not be sent.' },
+        { error: `Email could not be sent: ${error.message}` },
         { status: 500 }
       );
     }
