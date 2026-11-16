@@ -29,6 +29,50 @@ export default function Home() {
   const [showAllPartners, setShowAllPartners] = useState(false);
   const [partnerPage, setPartnerPage] = useState(1);
 
+  // Enquiry form state
+  const [formData, setFormData] = useState({ name: "", email: "", reason: "", message: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleEnquirySubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+      alert("Please fill in your name, email, and message.");
+      return;
+    }
+    setIsSubmitting(true);
+    try {
+      const fullMessage = formData.reason
+        ? `[Reason: ${formData.reason}]\n\n${formData.message}`
+        : formData.message;
+
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: fullMessage,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        alert('Your enquiry has been sent!');
+        setFormData({ name: "", email: "", reason: "", message: "" });
+      } else {
+        alert(result.error || 'Failed to send enquiry.');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Failed to send enquiry. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const partnersPerPage = 4;
   const totalPartnerPages = Math.ceil(partnersBase.length / partnersPerPage);
 
@@ -86,14 +130,11 @@ export default function Home() {
           {/* Right side: 5% Stat Card with Yellow Highlight */}
           <div className="md:w-1/2 flex justify-center md:justify-end w-full">
             <div className="w-full max-w-md bg-white text-[#1E1B1D] rounded-3xl p-8 md:p-10 shadow-xl border border-black/5 transform md:rotate-1 hover:rotate-0 transition-transform duration-300">
-              <h3 className="font-bold text-2xl md:text-3xl leading-snug">
-                <span className="font-black text-4xl md:text-6xl block mb-4 text-[#D45995] tracking-tight">
-                  Fewer than
+              <h3 className="font-bold leading-snug">
+                <span className="font-black text-4xl md:text-6xl tracking-tight">
+                  <span className="text-[#D45995]">Fewer than </span><span className="text-[#FACC15]">5%</span>
                 </span>
-                <span className="font-black text-4xl md:text-6xl block mb-4 text-[#FACC15] tracking-tight">
-                  5%
-                </span>
-                <span className="text-[#4A4045] font-medium leading-relaxed block text-lg md:text-xl">
+                <span className="text-[#4A4045] font-medium leading-relaxed block mt-4 text-lg md:text-xl">
                   of UK universities have women’s health societies. Let’s change this!
                 </span>
               </h3>
@@ -102,22 +143,22 @@ export default function Home() {
         </div>
         </section>
 
-        {/* About Us — directly on the gradient */}
+        {/* About Us — card matching the stat card style */}
         <section
           id="about"
           className="scroll-mt-28 w-[90%] max-w-6xl mx-auto px-2 md:px-4 py-8 md:py-12"
         >
-          <h2 className="text-white font-extrabold text-2xl md:text-4xl text-[#1E1B1D] tracking-tight mb-5">
-            About Us
-          </h2>
-
-          <p className="text-white text-base md:text-xl leading-relaxed max-w-4xl">
-            The Women’s Health Union (WHU) is a national umbrella organisation helping students set up women’s health societies across the UK and connecting them with industry leaders in the field.
-          </p>
-
-          <p className="text-white text-base md:text-xl leading-relaxed max-w-4xl">
-            By building a student community around women’s health, we give students role models, visibility of careers in the field and a clear pathway into innovating in one of healthcare’s most underfunded areas.
-          </p>
+          <div className="w-full bg-white text-[#1E1B1D] rounded-3xl p-8 md:p-10 shadow-xl border border-black/5">
+            <h2 className="font-extrabold text-3xl md:text-5xl tracking-tight mb-6 text-[#1E1B1D]">
+              About Us
+            </h2>
+            <p className="text-[#4A4045] text-base md:text-xl leading-relaxed max-w-4xl mb-5">
+              The Women’s Health Union (WHU) is a national umbrella organisation helping students set up women’s health societies across the UK and connecting them with industry leaders in the field.
+            </p>
+            <p className="text-[#4A4045] text-base md:text-xl leading-relaxed max-w-4xl">
+              By building a student community around women’s health, we give students role models, visibility of careers in the field and a clear pathway into innovating in one of healthcare’s most underfunded areas.
+            </p>
+          </div>
         </section>
 
         {/* Give the gradient room to finish below the card */}
@@ -213,14 +254,20 @@ export default function Home() {
             <div className="marquee-track py-6">
               {marqueeItems.map((partner, i) => {
                 const primaryLink = partner.links[0]?.url ?? "#";
+                const hasValidLink = Boolean(primaryLink && primaryLink !== "#");
 
                 return (
                   <a
                     key={`${partner.name}-${i}`}
-                    href={primaryLink}
-                    target={primaryLink !== "#" ? "_blank" : undefined}
-                    rel={primaryLink !== "#" ? "noopener noreferrer" : undefined}
-                    className="relative flex-shrink-0 mx-4 w-72 h-64 md:w-80 md:h-72 rounded-2xl bg-white shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer group overflow-hidden focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D45995]"
+                    href={hasValidLink ? primaryLink : undefined}
+                    target={hasValidLink ? "_blank" : undefined}
+                    rel={hasValidLink ? "noopener noreferrer" : undefined}
+                    onClick={(e) => {
+                      if (!hasValidLink) {
+                        e.preventDefault();
+                      }
+                    }}
+                    className={`relative flex-shrink-0 mx-4 w-72 h-64 md:w-80 md:h-72 rounded-2xl bg-white shadow-md hover:shadow-xl transition-shadow duration-300 group overflow-hidden focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D45995] ${hasValidLink ? "cursor-pointer" : "cursor-default"}`}
                   >
                     {/* Full-card image */}
                     {partner.logo ? (
@@ -452,12 +499,15 @@ export default function Home() {
             {/* Right: Contact Form */}
             <div className="flex-1">
               <p className="font-bold text-xs uppercase tracking-widest text-[#7C6E76] mb-4">Send an Enquiry</p>
-              <form className="flex flex-col gap-4" onSubmit={(e) => e.preventDefault()}>
+              <form className="flex flex-col gap-4" onSubmit={handleEnquirySubmit}>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <div className="flex-1 flex flex-col gap-1.5">
                     <label className="text-xs font-bold uppercase tracking-wider text-[#1E1B1D]">Your Name</label>
                     <input
                       type="text"
+                      required
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="Jane Doe"
                       className="w-full px-5 py-3 rounded-xl bg-[#F1EEF4]/60 border border-black/10 outline-none font-medium text-sm text-[#1E1B1D] placeholder-[#A6979F] focus:border-[#D45995] focus:bg-white focus:ring-2 focus:ring-[#D45995]/20 transition-all"
                     />
@@ -466,6 +516,9 @@ export default function Home() {
                     <label className="text-xs font-bold uppercase tracking-wider text-[#1E1B1D]">Your Email</label>
                     <input
                       type="email"
+                      required
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="your@email.com"
                       className="w-full px-5 py-3 rounded-xl bg-[#F1EEF4]/60 border border-black/10 outline-none font-medium text-sm text-[#1E1B1D] placeholder-[#A6979F] focus:border-[#D45995] focus:bg-white focus:ring-2 focus:ring-[#D45995]/20 transition-all"
                     />
@@ -475,20 +528,24 @@ export default function Home() {
                 <div className="flex flex-col gap-1.5">
                   <label className="text-xs font-bold uppercase tracking-wider text-[#1E1B1D]">What's your enquiry about?</label>
                   <select
-                    defaultValue=""
+                    value={formData.reason}
+                    onChange={(e) => setFormData({ ...formData, reason: e.target.value })}
                     className="w-full px-5 py-3 rounded-xl bg-[#F1EEF4]/60 border border-black/10 outline-none font-medium text-sm text-[#1E1B1D] focus:border-[#D45995] focus:bg-white focus:ring-2 focus:ring-[#D45995]/20 transition-all cursor-pointer"
                   >
-                    <option value="" disabled className="text-[#A6979F]">Select reason</option>
-                    <option value="learn">I want to learn more</option>
-                    <option value="partner">Partnership Collaboration</option>
-                    <option value="chapter">I'd like to open a chapter</option>
-                    <option value="other">Something else</option>
+                    <option value="" className="text-[#A6979F]">Select reason (optional)</option>
+                    <option value="I want to learn more">I want to learn more</option>
+                    <option value="Partnership Collaboration">Partnership Collaboration</option>
+                    <option value="I'd like to open a chapter">I'd like to open a chapter</option>
+                    <option value="Something else">Something else</option>
                   </select>
                 </div>
 
                 <div className="flex flex-col gap-1.5">
                   <textarea
                     rows={4}
+                    required
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     placeholder="Tell us more..."
                     className="w-full px-5 py-3 rounded-xl bg-[#F1EEF4]/60 border border-black/10 outline-none font-medium text-sm text-[#1E1B1D] placeholder-[#A6979F] focus:border-[#D45995] focus:bg-white focus:ring-2 focus:ring-[#D45995]/20 transition-all resize-y"
                   />
@@ -496,9 +553,10 @@ export default function Home() {
 
                 <button
                   type="submit"
-                  className="self-start px-8 py-3.5 rounded-xl bg-[#D45995] hover:bg-[#b83e7a] text-white font-bold text-sm shadow-md hover:shadow-lg transition-all cursor-pointer mt-2"
+                  disabled={isSubmitting}
+                  className="self-start px-8 py-3.5 rounded-xl bg-[#D45995] hover:bg-[#b83e7a] disabled:opacity-50 text-white font-bold text-sm shadow-md hover:shadow-lg transition-all cursor-pointer mt-2 flex items-center gap-2"
                 >
-                  Send message →
+                  {isSubmitting ? "Sending..." : "Send message →"}
                 </button>
               </form>
             </div>
