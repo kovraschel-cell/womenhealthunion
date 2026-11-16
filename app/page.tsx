@@ -138,7 +138,7 @@ export default function Home() {
       <div className="w-full bg-gradient-to-b from-[#D45995] from-20% to-[#F1EEF4] to-65%">
 
         {/* Section 1: Hero */}
-        <section className="w-full min-h-[calc(100svh-18rem)] pt-32 pb-16 md:pt-48 md:pb-20 relative">          <div className="w-full max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between px-6 gap-12">
+        <section className="w-full min-h-[calc(100svh-18rem)] pt-32 pb-8 md:pt-48 md:pb-20 relative">          <div className="w-full max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between px-6 gap-8 md:gap-12">
           {/* Left side: Logo & Motto */}
           <div className="md:w-1/2 flex flex-col items-center text-center md:translate-y-6 md:-translate-x-4">            <h1 className="font-black text-[8rem] md:text-[clamp(12rem,18vw,14rem)] leading-[0.85] tracking-tighter text-white drop-shadow-[0_6px_10px_rgba(90,20,55,0.25)] select-none">
             WHU
@@ -150,7 +150,7 @@ export default function Home() {
           {/* Right side: 5% Stat Card with Yellow Highlight */}
           <div className="md:w-1/2 flex justify-center md:justify-end w-full">
             <div className="w-full max-w-lg bg-white text-[#1E1B1D] rounded-3xl p-8 md:p-10 shadow-xl border border-black/5 transform md:rotate-1 hover:rotate-0 transition-transform duration-300">
-              <h3 className="font-bold leading-snug">
+              <h3 className="font-bold leading-snug text-center md:text-left">
                 <span className="font-black text-4xl md:text-5xl tracking-tight">
                   <span className="text-[#D45995]">Fewer than </span><span className="text-[#EAB308]">5%</span>
                 </span>
@@ -487,27 +487,27 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
 
             {/* Start a Chapter */}
-            <div className="flex flex-col gap-4 rounded-3xl bg-[#EBEBEE] border border-black/10 text-[#1E1B1D] p-8 md:p-10 shadow-xl">
+            <div className="flex flex-col gap-4 rounded-3xl bg-gradient-to-br from-[#CC4F8F] to-[#B2407D] text-white p-8 md:p-10 shadow-xl">
               <h3 className="font-black text-3xl md:text-5xl tracking-tight">
-                Start a <span className="text-[#D45995]">Chapter</span>
+                <span className="bg-[#FDE047] text-[#1E1B1D] px-3 py-1 rounded-xl box-decoration-clone leading-[1.5]">Start a Chapter</span>
               </h3>
               <p className="text-lg md:text-xl font-semibold leading-snug">
-                Bring <span className="bg-[#FDE047] px-1 rounded box-decoration-clone">women’s health</span> to your university, with everything ready so you’re not starting from zero.
+                Bring <span className="text-[#FDE047]">women’s health</span> to your university, with everything ready so you’re not starting from zero.
               </p>
-              <div className="h-px bg-black/15 my-1" />
-              <p className="font-extrabold text-sm uppercase tracking-[0.2em] text-[#D45995]">
+              <div className="h-px bg-white/30 my-1" />
+              <p className="font-extrabold text-sm uppercase tracking-[0.2em] text-[#FDE047]">
                 Every chapter gets:
               </p>
               <ul className="space-y-3 text-base md:text-lg">
                 {[
-                  <><strong className="bg-[#FDE047] px-1 rounded box-decoration-clone">The WHU Chapter Starter Kit:</strong> branded templates, trackers and everything you need to launch a society</>,
-                  <>Ready-made event formats, including a full <strong className="bg-[#FDE047] px-1 rounded box-decoration-clone">hackathon guide</strong></>,
-                  <>A <strong className="bg-[#FDE047] px-1 rounded box-decoration-clone">monthly newsletter</strong> with opportunities in women’s health</>,
-                  <>Direct connections to <strong className="bg-[#FDE047] px-1 rounded box-decoration-clone">partners</strong> for talks and collaborations</>,
-                  <>A <strong className="bg-[#FDE047] px-1 rounded box-decoration-clone">national network</strong> of chapters to collaborate and run events with</>,
+                  <><strong className="text-[#FDE047]">The WHU Chapter Starter Kit:</strong> branded templates, trackers and everything you need to launch a society</>,
+                  <>Ready-made event formats, including a full <strong className="text-[#FDE047]">hackathon guide</strong></>,
+                  <>A <strong className="text-[#FDE047]">monthly newsletter</strong> with opportunities in women’s health</>,
+                  <>Direct connections to <strong className="text-[#FDE047]">partners</strong> for talks and collaborations</>,
+                  <>A <strong className="text-[#FDE047]">national network</strong> of chapters to collaborate and run events with</>,
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <span aria-hidden="true" className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-[#FDE047] text-[#1E1B1D] text-sm font-black">✓</span>
+                    <span aria-hidden="true" className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-[#FDE047] text-[#B2407D] text-sm font-black">✓</span>
                     <span className="leading-snug">{item}</span>
                   </li>
                 ))}
@@ -515,31 +515,31 @@ export default function Home() {
             </div>
 
             {/* Become a Partner */}
-            <div className="flex flex-col gap-4 rounded-3xl bg-[#EBEBEE] border border-black/10 text-[#1E1B1D] p-8 md:p-10 shadow-xl">
+            <div className="flex flex-col gap-4 rounded-3xl bg-gradient-to-br from-[#CC4F8F] to-[#B2407D] text-white p-8 md:p-10 shadow-xl">
               <h3 className="font-black text-3xl md:text-5xl tracking-tight">
-                Become a <span className="text-[#D45995]">Partner</span>
+                <span className="bg-[#FDE047] text-[#1E1B1D] px-3 py-1 rounded-xl box-decoration-clone leading-[1.5]">Become a Partner</span>
               </h3>
               <p className="text-lg md:text-xl font-semibold leading-snug">
-                Join a network of <span className="bg-[#FDE047] px-1 rounded box-decoration-clone">women’s health professionals, founders and advocates</span> inspiring future innovators.
+                Join a network of <span className="text-[#FDE047]">women’s health professionals, founders and advocates</span> inspiring future innovators.
               </p>
-              <div className="h-px bg-black/15 my-1" />
+              <div className="h-px bg-white/30 my-1" />
               <p className="text-base md:text-lg leading-snug">
-                Be a role model for students exploring careers in women’s health. There are <strong className="bg-[#FDE047] px-1 rounded box-decoration-clone">three ways to get involved</strong>, depending on what suits you:
+                Be a role model for students exploring careers in women’s health. There are <strong className="text-[#FDE047]">three ways to get involved</strong>, depending on what suits you:
               </p>
               <ul className="space-y-3 text-base md:text-lg">
                 {[
-                  <><strong className="bg-[#FDE047] px-1 rounded box-decoration-clone">Written:</strong> share your thoughts and experiences in our newsletter, or answer student questions</>,
-                  <><strong className="bg-[#FDE047] px-1 rounded box-decoration-clone">Recorded:</strong> contribute to our student-led content, such as an interviews or podcast conversations</>,
-                  <><strong className="bg-[#FDE047] px-1 rounded box-decoration-clone">Live:</strong> join an online panel or webinar, or attend student events in person</>,
+                  <><strong className="text-[#FDE047]">Written:</strong> share your thoughts and experiences in our newsletter, or answer student questions</>,
+                  <><strong className="text-[#FDE047]">Recorded:</strong> contribute to our student-led content, such as an interviews or podcast conversations</>,
+                  <><strong className="text-[#FDE047]">Live:</strong> join an online panel or webinar, or attend student events in person</>,
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <span aria-hidden="true" className="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-[#D45995]" />
+                    <span aria-hidden="true" className="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-[#FDE047]" />
                     <span className="leading-snug">{item}</span>
                   </li>
                 ))}
               </ul>
-              <div className="mt-2 rounded-2xl bg-white border border-black/5 p-5 text-base md:text-lg leading-snug">
-                <strong className="bg-[#FDE047] px-1 rounded box-decoration-clone">What you get:</strong> a listing on the WHU website, visibility across our student chapters, and the chance to meet motivated students. <strong className="bg-[#FDE047] px-1 rounded box-decoration-clone">There is no minimum commitment.</strong>
+              <div className="mt-2 rounded-2xl bg-white/15 p-5 text-base md:text-lg leading-snug">
+                <strong className="text-[#FDE047]">What you get:</strong> a listing on the WHU website, visibility across our student chapters, and the chance to meet motivated students. <strong className="text-[#FDE047]">There is no minimum commitment.</strong>
               </div>
             </div>
 
