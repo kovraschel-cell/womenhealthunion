@@ -18,14 +18,6 @@ export interface PartnerProfile {
 
 const partners: PartnerProfile[] = [
   {
-    name: "Bobbi",
-    about: "An inclusive beauty brand championing self-expression and wellbeing for every woman.",
-    logo: "/logos/bobbilogo.png",
-    links: [
-      { label: "Instagram", url: "#" },
-    ],
-  },
-  {
     name: "Katy Jackson",
     about: "Katy is currently the Clinical Director of Women’s Health at Voy. She has served as Chief Clinical Officer and Operations Director at Newson Health, a menopause care provider. She also previously held senior NHS roles, including Director of Systems Resilience at Sussex Health and Care Partnership. Alongside being a women’s health advocate, Katy also mentors young women in leadership.",
     logo: "/logos/katyjackson.jpg",
