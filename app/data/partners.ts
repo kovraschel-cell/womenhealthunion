@@ -22,7 +22,7 @@ const partners: PartnerProfile[] = [
     about: "An inclusive beauty brand championing self-expression and wellbeing for every woman.",
     logo: "/logos/bobbilogo.png",
     links: [
-      { label: "Instagram", url: "https://www.instagram.com/wearebobbi/" },
+      { label: "Instagram", url: "#" },
     ],
   },
   {
