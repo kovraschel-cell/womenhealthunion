@@ -123,7 +123,7 @@ export default function Home() {
           <div className="md:w-1/2 flex flex-col items-center text-center md:translate-y-6 md:-translate-x-4">            <h1 className="font-black text-[8rem] md:text-[clamp(12rem,18vw,14rem)] leading-[0.85] tracking-tighter text-white drop-shadow-[0_6px_10px_rgba(90,20,55,0.25)] select-none">
             WHU
           </h1>
-            <div className="text-white font-extrabold text-xl md:text-2xl px-6 py-3 mt-6">
+            <div className="text-white font-extrabold text-xl md:text-4xl px-6 py-3 mt-6">
               Women's Health Union
             </div>
           </div>
@@ -131,7 +131,7 @@ export default function Home() {
           <div className="md:w-1/2 flex justify-center md:justify-end w-full">
             <div className="w-full max-w-md bg-white text-[#1E1B1D] rounded-3xl p-8 md:p-10 shadow-xl border border-black/5 transform md:rotate-1 hover:rotate-0 transition-transform duration-300">
               <h3 className="font-bold leading-snug">
-                <span className="font-black text-4xl md:text-6xl tracking-tight">
+                <span className="font-black text-4xl md:text-5xl tracking-tight">
                   <span className="text-[#D45995]">Fewer than </span><span className="text-[#FACC15]">5%</span>
                 </span>
                 <span className="text-[#4A4045] font-medium leading-relaxed block mt-4 text-lg md:text-xl">
@@ -149,13 +149,13 @@ export default function Home() {
           className="scroll-mt-28 w-[90%] max-w-6xl mx-auto px-2 md:px-4 py-8 md:py-12"
         >
           <div className="w-full bg-white text-[#1E1B1D] rounded-3xl p-8 md:p-10 shadow-xl border border-black/5">
-            <h2 className="font-extrabold text-3xl md:text-5xl tracking-tight mb-6 text-[#1E1B1D]">
+            <h2 className="font-extrabold text-2xl md:text-4xl tracking-tight mb-6 text-[#1E1B1D]">
               About Us
             </h2>
-            <p className="text-[#4A4045] text-base md:text-xl leading-relaxed max-w-4xl mb-5">
+            <p className="text-[#4A4045] text-base md:text-l leading-relaxed max-w-4xl mb-5">
               The Women’s Health Union (WHU) is a national umbrella organisation helping students set up women’s health societies across the UK and connecting them with industry leaders in the field.
             </p>
-            <p className="text-[#4A4045] text-base md:text-xl leading-relaxed max-w-4xl">
+            <p className="text-[#4A4045] text-base md:text-l leading-relaxed max-w-4xl">
               By building a student community around women’s health, we give students role models, visibility of careers in the field and a clear pathway into innovating in one of healthcare’s most underfunded areas.
             </p>
           </div>

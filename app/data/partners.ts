@@ -35,7 +35,7 @@ const partners: PartnerProfile[] = [
   },
   {
     name: "Imogen Clarke",
-    about: "Working across women's health for 5+ years. With a strong qualitative research background (MRes Security, Conflict and Human Rights & BA Anthropology), Imogen’s goal is to use these ethical research skills to help close the gender data gap across a whole range of sectors, starting with healthCurrently, Imogen is the Partnerships & Growth Manager at Micrima. Focused on relationship building across the Bristol healthcare landscape for a CE marked medical device. Previously, she led high-value partners for W Group's global Women's Health Week conferences and accelerators. Building a valuable network across the UK, Europe, USA and Asia all focused on accelerating Femtech. ",
+    about: "mogen is the Director for HerSay.Uk, building a community to help close the gender health gap. Working across women's health for 5+ years, with a strong qualitative research background (MRes Security, Conflict and Human Rights & BA Anthropology), Imogen’s goal is to use these ethical research skills to help close the gender data gap across a whole range of sectors, starting with health.  Imogen is also the Partnerships & Growth Manager at Micrima. Here she is focused on relationship building across the private healthcare and employer landscape for a CE marked breast medical device. Previously, she led high-value partners for W Group's global Women's Health Week conferences and accelerators. Building a valuable global network focused on accelerating Femtech.",
     logo: "/logos/imogenclarke.jpg",
     links: [
       { label: "Website", url: "#" },
@@ -44,7 +44,7 @@ const partners: PartnerProfile[] = [
   },
   {
     name: "HerSay",
-    about: "HerSay is focused on reducing the gender health gap.We do this through community based events, education and research which is fed back into products, spaces and businesses who want to design with women in mind. We host health focused activities to tackle some of the biggest gaps in women's health and lived experiences. ",
+    about: "HerSay is focused on reducing the gender health gap. We host educational talks & wellness activities to bring women together and open up conversation around some of the biggest gaps in women's health and lived experiences. Women all over the UK can also sign up to express interest in participating in research, which is fed back into products, spaces and businesses who want to design with women in mind. Follow on Instagram @hersay.uk or LinkedIn HerSay.uk",
     logo: "/logos/hersay.png",
     links: [
       { label: "Website", url: "#" },
@@ -69,7 +69,7 @@ const partners: PartnerProfile[] = [
   },
   {
     name: "Omaia",
-    about: "Omaia is a women’s health technology company focused on transforming maternal mental health. Its personalised digital platform provides evidence-informed emotional and practical support throughout the family-building journey, from fertility and pregnancy to birth and early parenthood. By combining technology with clinical expertise, Omaia aims to make maternal wellbeing an integral part of maternity care, ensuring families feel supported, understood and less alone.",
+    about: "Omaia is a women’s health technology company focused on emotional wellbeing in pregnancy and early parenthood. Its personalised digital platform provides evidence-informed emotional and practical support throughout the family-building journey, from fertility and pregnancy to birth and early parenthood. By combining technology with clinical expertise, Omaia aims to make maternal wellbeing an integral part of maternity care, ensuring families feel supported, understood and less alone.",
     logo: "/logos/omaia.png",
     links: [
       { label: "Website", url: "#" },
