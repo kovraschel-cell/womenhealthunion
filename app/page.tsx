@@ -9,12 +9,6 @@ const StudentChapterMap = dynamic(() => import("./components/StudentChapterMap")
 
 const chapters = [
   {
-    university: "Queen Mary University of London", city: "London", active: true, logo: "/logos/qmullogo.png", lat: 51.5241, lng: -0.0404,
-    committee: [
-      { role: "President", name: "Hanling Zhang", course: "Biomedical Engineering`", email: "hanling.zhang@se26.qmul.ac.uk" },
-    ],
-  },
-  {
     university: "University of Sheffield", city: "Sheffield", active: true, logo: "/logos/sheflogo.png", lat: 53.3811, lng: -1.4701,
     committee: [
       { role: "President", name: "Janvi Ranish", course: "Biomedical Engineering", email: "jranish1@sheffield.ac.uk" },
@@ -28,7 +22,6 @@ export default function Home() {
   const [viewMode, setViewMode] = useState<"list" | "map">("list");
   const [showAllPartners, setShowAllPartners] = useState(false);
   const [partnerPage, setPartnerPage] = useState(1);
-  const [activeHint, setActiveHint] = useState<"partner" | "chapter" | null>(null);
 
   // Enquiry form state
   const [formData, setFormData] = useState({ name: "", email: "", reason: "", message: "" });
@@ -179,13 +172,6 @@ export default function Home() {
                 <h2 className="font-extrabold text-2xl md:text-4xl text-[#1E1B1D] tracking-tight">
                   Our Student Chapters
                 </h2>
-                <button
-                  type="button"
-                  onClick={() => setActiveHint("chapter")}
-                  className="self-start text-xs md:text-sm font-semibold text-[#D45995] hover:text-[#b83e7a] underline underline-offset-4 decoration-[#D45995]/40 hover:decoration-[#D45995] transition-colors cursor-pointer text-left"
-                >
-                  How to start a chapter →
-                </button>
               </div>
               {/* Toggle Switch */}
               <div className="flex items-center bg-[#F1EEF4] rounded-full p-1 border border-black/5">
@@ -253,13 +239,6 @@ export default function Home() {
             <h2 className="font-extrabold text-2xl md:text-4xl text-[#1E1B1D] tracking-tight">
               We are proud to partner with
             </h2>
-            <button
-              type="button"
-              onClick={() => setActiveHint("partner")}
-              className="text-xs md:text-sm font-semibold text-[#D45995] hover:text-[#b83e7a] underline underline-offset-4 decoration-[#D45995]/40 hover:decoration-[#D45995] transition-colors cursor-pointer"
-            >
-              How to become a Partner →
-            </button>
           </div>
 
           {/* Marquee wrapper */}
@@ -463,6 +442,81 @@ export default function Home() {
             )}
           </div>
         </section>
+        {/* Section: Get Involved — Start a Chapter / Become a Partner */}
+        <section
+          id="get-involved"
+          className="scroll-mt-28 px-2 md:px-4 py-10 md:py-14 border-t border-[#4A4045]/15"
+        >
+          <div className="grid grid-cols-1 md:grid-cols-2 md:divide-x divide-y md:divide-y-0 divide-[#4A4045]/20">
+
+            {/* Start a Chapter */}
+            <div className="flex flex-col gap-4 text-[#1E1B1D] pb-10 md:pb-0 md:pr-12">
+              <h2 className="font-extrabold text-2xl md:text-4xl text-[#1E1B1D] tracking-tight">
+                Start a Chapter
+              </h2>
+              <p className="text-base text-[#4A4045] leading-relaxed">
+                Bring women’s health to your university, with everything ready so you’re not starting from zero.
+              </p>
+              <p className="font-bold text-sm uppercase tracking-wider text-[#1E1B1D] pt-1">
+                Every chapter gets:
+              </p>
+              <ul className="space-y-2.5 text-sm md:text-base text-[#4A4045] pl-1">
+                <li className="flex items-start gap-2">
+                  <span className="text-[#D45995] font-bold">✓</span>
+                  <span><strong>The WHU Chapter Starter Kit:</strong> branded templates, trackers and everything you need to launch a society</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#D45995] font-bold">✓</span>
+                  <span>Ready-made event formats, including a full hackathon guide</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#D45995] font-bold">✓</span>
+                  <span>A monthly newsletter with opportunities in women’s health</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#D45995] font-bold">✓</span>
+                  <span>Direct connections to partners for talks and collaborations</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#D45995] font-bold">✓</span>
+                  <span>A national network of chapters to collaborate and run events with</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Become a Partner */}
+            <div className="flex flex-col gap-4 text-[#1E1B1D] pt-10 md:pt-0 md:pl-12">
+              <h2 className="font-extrabold text-2xl md:text-4xl text-[#1E1B1D] tracking-tight">
+                Become a Partner
+              </h2>
+              <p className="text-base text-[#4A4045] leading-relaxed">
+                Join a network of women’s health professionals, founders and advocates inspiring future innovators.
+              </p>
+              <p className="text-sm md:text-base text-[#4A4045] leading-relaxed">
+                Be a role model for students exploring careers in women’s health. There are three ways to get involved, depending on what suits you:
+              </p>
+              <ul className="space-y-2.5 text-sm md:text-base text-[#4A4045] pl-1">
+                <li className="flex items-start gap-2">
+                  <span className="text-[#D45995] font-bold">•</span>
+                  <span><strong>Written:</strong> share your thoughts and experiences in our newsletter, or answer student questions</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#D45995] font-bold">•</span>
+                  <span><strong>Recorded:</strong> contribute to our student-led content, such as an interviews or podcast conversations</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#D45995] font-bold">•</span>
+                  <span><strong>Live:</strong> join an online panel or webinar, or attend student events in person</span>
+                </li>
+              </ul>
+              <p className="text-sm md:text-base text-[#4A4045] leading-relaxed pt-1">
+                <strong className="text-[#1E1B1D]">What you get:</strong> a listing on the WHU website, visibility across our student chapters, and the chance to meet motivated students. There is no minimum commitment.
+              </p>
+            </div>
+
+          </div>
+        </section>
+
         {/* Section 4: Contact — full width, one row */}
         <section
           id="contact"
@@ -659,115 +713,6 @@ export default function Home() {
                 </div>
 
               </div>
-            </div>
-          </div>
-        )
-      }
-
-      {/* Hint Modal */}
-      {
-        activeHint && (
-          <div
-            className="fixed inset-0 z-[100] bg-black/40 backdrop-blur-sm flex items-center justify-center p-6"
-            onClick={() => setActiveHint(null)}
-          >
-            <div
-              className="modal-pop w-full max-w-2xl bg-white rounded-3xl p-8 md:p-12 shadow-2xl border border-black/10 relative max-h-[90vh] overflow-y-auto"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button
-                type="button"
-                onClick={() => setActiveHint(null)}
-                aria-label="Close"
-                className="absolute top-6 right-6 w-10 h-10 rounded-full bg-[#F1EEF4] hover:bg-[#e4dfe7] text-[#1E1B1D] flex items-center justify-center transition-colors cursor-pointer z-10"
-              >
-                <X size={20} />
-              </button>
-
-              {activeHint === "partner" ? (
-                <div className="flex flex-col gap-4 text-[#1E1B1D]">
-                  <div className="flex items-center gap-2.5">
-                  </div>
-                  <h3 className="font-extrabold text-2xl md:text-3xl tracking-tight">Become a Partner</h3>
-                  <p className="text-base text-[#4A4045] leading-relaxed">
-                    Join a network of women’s health professionals, founders and advocates inspiring future innovators.
-                  </p>
-                  <p className="text-sm md:text-base text-[#4A4045] leading-relaxed">
-                    Be a role model for students exploring careers in women’s health. There are three ways to get involved, depending on what suits you:
-                  </p>
-                  <ul className="space-y-2 text-sm md:text-base text-[#4A4045] pl-1">
-                    <li className="flex items-start gap-2">
-                      <span className="text-[#D45995] font-bold">•</span>
-                      <span><strong>Written:</strong> share your thoughts and experiences in our newsletter, or answer student questions</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-[#D45995] font-bold">•</span>
-                      <span><strong>Recorded:</strong> contribute to our student-led content, such as an interviews or podcast conversations</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-[#D45995] font-bold">•</span>
-                      <span><strong>Live:</strong> join an online panel or webinar, or attend student events in person</span>
-                    </li>
-                  </ul>
-                  <div className="p-4 rounded-2xl bg-[#F1EEF4]/70 border border-black/5 text-sm text-[#4A4045] leading-relaxed">
-                    <strong className="text-[#1E1B1D]">What you get:</strong> a listing on the WHU website, visibility across our student chapters, and the chance to meet motivated students. There is no minimum commitment.
-                  </div>
-                  <a
-                    href="#contact"
-                    onClick={(e) => {
-                      setActiveHint(null);
-                      scrollTo("contact")(e);
-                    }}
-                    className="mt-2 self-start px-6 py-3 rounded-xl bg-[#D45995] hover:bg-[#b83e7a] text-white font-bold text-sm shadow-md transition-all cursor-pointer"
-                  >
-                    Get in touch →
-                  </a>
-                </div>
-              ) : (
-                <div className="flex flex-col gap-4 text-[#1E1B1D]">
-                  <div className="flex items-center gap-2.5">
-                  </div>
-                  <h3 className="font-extrabold text-2xl md:text-3xl tracking-tight">Start a Chapter</h3>
-                  <p className="text-base text-[#4A4045] leading-relaxed">
-                    Bring women’s health to your university, with everything ready so you’re not starting from zero.
-                  </p>
-                  <p className="font-bold text-sm uppercase tracking-wider text-[#1E1B1D] pt-1">
-                    Every chapter gets:
-                  </p>
-                  <ul className="space-y-2.5 text-sm md:text-base text-[#4A4045] pl-1">
-                    <li className="flex items-start gap-2">
-                      <span className="text-[#D45995] font-bold">✓</span>
-                      <span><strong>The WHU Chapter Starter Kit:</strong> branded templates, trackers and everything you need to launch a society</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-[#D45995] font-bold">✓</span>
-                      <span>Ready-made event formats, including a full hackathon guide</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-[#D45995] font-bold">✓</span>
-                      <span>A monthly newsletter with opportunities in women’s health</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-[#D45995] font-bold">✓</span>
-                      <span>Direct connections to partners for talks and collaborations</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-[#D45995] font-bold">✓</span>
-                      <span>A national network of chapters to collaborate and run events with</span>
-                    </li>
-                  </ul>
-                  <a
-                    href="#contact"
-                    onClick={(e) => {
-                      setActiveHint(null);
-                      scrollTo("contact")(e);
-                    }}
-                    className="mt-2 self-start px-6 py-3 rounded-xl bg-[#D45995] hover:bg-[#b83e7a] text-white font-bold text-sm shadow-md transition-all cursor-pointer"
-                  >
-                    Start a chapter with us →
-                  </a>
-                </div>
-              )}
             </div>
           </div>
         )
