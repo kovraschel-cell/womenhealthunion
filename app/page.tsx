@@ -91,6 +91,20 @@ export default function Home() {
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }, []);
 
+  // Bios can contain [text](url) links. Plain version (for hover cards) and clickable version (for the directory).
+  const plainAbout = (text: string) => text.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1");
+  const richAbout = (text: string) =>
+    text.split(/(\[[^\]]+\]\([^)]+\))/g).map((part, i) => {
+      const m = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+      return m ? (
+        <a key={i} href={m[2]} target="_blank" rel="noopener noreferrer" className="font-semibold text-[#A82F6B] underline underline-offset-4 decoration-[#D45995]/40 hover:decoration-[#D45995]">
+          {m[1]}
+        </a>
+      ) : (
+        part
+      );
+    });
+
   // Duplicate for seamless marquee loop
   const marqueeItems = [...partnersBase, ...partnersBase];
 
@@ -104,6 +118,7 @@ export default function Home() {
           <a href="#about" onClick={scrollTo("about")} className="hover:text-[#D45995] transition-colors cursor-pointer">About</a>
           <a href="#chapters" onClick={scrollTo("chapters")} className="hover:text-[#D45995] transition-colors cursor-pointer">Chapters</a>
           <a href="#partners" onClick={scrollTo("partners")} className="hover:text-[#D45995] transition-colors cursor-pointer">Partners</a>
+          <a href="#get-involved" onClick={scrollTo("get-involved")} className="hover:text-[#D45995] transition-colors cursor-pointer">Join Us</a>
           <a href="#contact" onClick={scrollTo("contact")} className="hover:text-[#D45995] transition-colors cursor-pointer">Contact</a>
         </div>
       </nav>
@@ -117,18 +132,18 @@ export default function Home() {
           <div className="md:w-1/2 flex flex-col items-center text-center md:translate-y-6 md:-translate-x-4">            <h1 className="font-black text-[8rem] md:text-[clamp(12rem,18vw,14rem)] leading-[0.85] tracking-tighter text-white drop-shadow-[0_6px_10px_rgba(90,20,55,0.25)] select-none">
             WHU
           </h1>
-            <div className="text-white font-extrabold text-xl md:text-4xl px-6 py-3 mt-6">
+            <div className="text-white font-extrabold text-3xl md:text-5xl lg:text-6xl leading-tight px-6 py-3 mt-6">
               Women's Health Union
             </div>
           </div>
           {/* Right side: 5% Stat Card with Yellow Highlight */}
           <div className="md:w-1/2 flex justify-center md:justify-end w-full">
-            <div className="w-full max-w-md bg-white text-[#1E1B1D] rounded-3xl p-8 md:p-10 shadow-xl border border-black/5 transform md:rotate-1 hover:rotate-0 transition-transform duration-300">
+            <div className="w-full max-w-lg bg-white text-[#1E1B1D] rounded-3xl p-8 md:p-10 shadow-xl border border-black/5 transform md:rotate-1 hover:rotate-0 transition-transform duration-300">
               <h3 className="font-bold leading-snug">
                 <span className="font-black text-4xl md:text-5xl tracking-tight">
                   <span className="text-[#D45995]">Fewer than </span><span className="text-[#FACC15]">5%</span>
                 </span>
-                <span className="text-[#4A4045] font-medium leading-relaxed block mt-4 text-lg md:text-xl">
+                <span className="text-[#1E1B1D] font-extrabold leading-snug block mt-4 text-2xl md:text-3xl">
                   of UK universities have women’s health societies. Let’s change this!
                 </span>
               </h3>
@@ -146,10 +161,10 @@ export default function Home() {
             <h2 className="font-extrabold text-2xl md:text-4xl tracking-tight mb-6 text-[#1E1B1D]">
               About Us
             </h2>
-            <p className="text-[#4A4045] text-base md:text-l leading-relaxed max-w-4xl mb-5">
+            <p className="text-[#4A4045] text-lg md:text-xl leading-relaxed max-w-none mb-5">
               The Women’s Health Union (WHU) is a national umbrella organisation helping students set up women’s health societies across the UK and connecting them with industry leaders in the field.
             </p>
-            <p className="text-[#4A4045] text-base md:text-l leading-relaxed max-w-4xl">
+            <p className="text-[#4A4045] text-lg md:text-xl leading-relaxed max-w-none">
               By building a student community around women’s health, we give students role models, visibility of careers in the field and a clear pathway into innovating in one of healthcare’s most underfunded areas.
             </p>
           </div>
@@ -193,12 +208,12 @@ export default function Home() {
             </header>
 
             {viewMode === "list" ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              <div className="flex flex-wrap justify-center gap-8 max-w-4xl mx-auto">
                 {chapters.map((chapter, i) => (
                   <button
                     key={i}
                     onClick={() => setSelectedChapter(chapter)}
-                    className="flex flex-col p-8 bg-[#F1EEF4]/60 rounded-3xl border border-black/5 hover:border-[#D45995]/40 hover:bg-white hover:shadow-xl transition-all duration-300 text-left group cursor-pointer"
+                    className="flex flex-col w-full md:w-[calc(50%-1rem)] p-8 bg-[#F1EEF4]/60 rounded-3xl border border-black/5 hover:border-[#D45995]/40 hover:bg-white hover:shadow-xl transition-all duration-300 text-left group cursor-pointer"
                     aria-label={`Open ${chapter.university} chapter details`}
                   >
                     {/* Logo container */}
@@ -280,10 +295,15 @@ export default function Home() {
                     {/* About text revealed on hover or keyboard focus */}
                     <div className="absolute inset-0 bg-black/75 opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-300" />
 
-                    <div className="absolute inset-x-0 top-0 bottom-20 flex items-center justify-center px-6 opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-300">
-                      <p className="text-white text-sm text-center leading-relaxed line-clamp-6">
-                        {partner.about}
+                    <div className="absolute inset-x-0 top-0 bottom-20 flex flex-col items-center justify-center gap-3 px-6 opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-300">
+                      <p className="text-white text-sm text-center leading-relaxed line-clamp-5">
+                        {plainAbout(partner.about)}
                       </p>
+                      {partner.about.length > 200 && (
+                        <span className="text-[#FDE047] text-xs font-bold text-center">
+                          Bio continues — tap “Show all partners” below to read it in full ↓
+                        </span>
+                      )}
                     </div>
 
                     {/* Name stays visible at the bottom */}
@@ -376,7 +396,7 @@ export default function Home() {
                   {/* Right: description */}
                   <div className="md:pt-2 min-w-0">
                     <p className="text-base md:text-lg leading-relaxed text-[#4A4045] whitespace-pre-line">
-                      {partner.about}
+                      {richAbout(partner.about)}
                     </p>
                   </div>
                 </article>
@@ -442,76 +462,74 @@ export default function Home() {
             )}
           </div>
         </section>
-        {/* Section: Get Involved — Start a Chapter / Become a Partner */}
+        {/* Section: Join Us — Start a Chapter / Become a Partner */}
         <section
           id="get-involved"
-          className="scroll-mt-28 px-2 md:px-4 py-10 md:py-14 border-t border-[#4A4045]/15"
+          className="scroll-mt-28 px-2 md:px-4 py-10 md:py-14"
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 md:divide-x divide-y md:divide-y-0 divide-[#4A4045]/20">
+          <div className="text-center mb-10">
+            <h2 className="font-extrabold text-2xl md:text-4xl text-[#1E1B1D] tracking-tight">
+              Join Us
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
 
             {/* Start a Chapter */}
-            <div className="flex flex-col gap-4 text-[#1E1B1D] pb-10 md:pb-0 md:pr-12">
-              <h2 className="font-extrabold text-2xl md:text-4xl text-[#1E1B1D] tracking-tight">
-                Start a Chapter
-              </h2>
-              <p className="text-base text-[#4A4045] leading-relaxed">
-                Bring women’s health to your university, with everything ready so you’re not starting from zero.
+            <div className="flex flex-col gap-4 rounded-3xl bg-gradient-to-br from-[#A82F6B] to-[#7E2253] text-white p-8 md:p-10 shadow-xl">
+              <h3 className="font-black text-3xl md:text-5xl tracking-tight">
+                Start a <span className="text-[#FDE047]">Chapter</span>
+              </h3>
+              <p className="text-lg md:text-xl font-semibold leading-snug">
+                Bring <span className="text-[#FDE047]">women’s health</span> to your university, with everything ready so you’re not starting from zero.
               </p>
-              <p className="font-bold text-sm uppercase tracking-wider text-[#1E1B1D] pt-1">
+              <div className="h-px bg-white/30 my-1" />
+              <p className="font-extrabold text-sm uppercase tracking-[0.2em] text-[#FDE047]">
                 Every chapter gets:
               </p>
-              <ul className="space-y-2.5 text-sm md:text-base text-[#4A4045] pl-1">
-                <li className="flex items-start gap-2">
-                  <span className="text-[#D45995] font-bold">✓</span>
-                  <span><strong>The WHU Chapter Starter Kit:</strong> branded templates, trackers and everything you need to launch a society</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#D45995] font-bold">✓</span>
-                  <span>Ready-made event formats, including a full hackathon guide</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#D45995] font-bold">✓</span>
-                  <span>A monthly newsletter with opportunities in women’s health</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#D45995] font-bold">✓</span>
-                  <span>Direct connections to partners for talks and collaborations</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#D45995] font-bold">✓</span>
-                  <span>A national network of chapters to collaborate and run events with</span>
-                </li>
+              <ul className="space-y-3 text-base md:text-lg">
+                {[
+                  <><strong className="text-[#FDE047]">The WHU Chapter Starter Kit:</strong> branded templates, trackers and everything you need to launch a society</>,
+                  <>Ready-made event formats, including a full <strong className="text-[#FDE047]">hackathon guide</strong></>,
+                  <>A <strong className="text-[#FDE047]">monthly newsletter</strong> with opportunities in women’s health</>,
+                  <>Direct connections to <strong className="text-[#FDE047]">partners</strong> for talks and collaborations</>,
+                  <>A <strong className="text-[#FDE047]">national network</strong> of chapters to collaborate and run events with</>,
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <span aria-hidden="true" className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-[#FDE047] text-[#7E2253] text-sm font-black">✓</span>
+                    <span className="leading-snug">{item}</span>
+                  </li>
+                ))}
               </ul>
             </div>
 
             {/* Become a Partner */}
-            <div className="flex flex-col gap-4 text-[#1E1B1D] pt-10 md:pt-0 md:pl-12">
-              <h2 className="font-extrabold text-2xl md:text-4xl text-[#1E1B1D] tracking-tight">
-                Become a Partner
-              </h2>
-              <p className="text-base text-[#4A4045] leading-relaxed">
-                Join a network of women’s health professionals, founders and advocates inspiring future innovators.
+            <div className="flex flex-col gap-4 rounded-3xl bg-gradient-to-br from-[#A82F6B] to-[#7E2253] text-white p-8 md:p-10 shadow-xl">
+              <h3 className="font-black text-3xl md:text-5xl tracking-tight">
+                Become a <span className="text-[#FDE047]">Partner</span>
+              </h3>
+              <p className="text-lg md:text-xl font-semibold leading-snug">
+                Join a network of <span className="text-[#FDE047]">women’s health professionals, founders and advocates</span> inspiring future innovators.
               </p>
-              <p className="text-sm md:text-base text-[#4A4045] leading-relaxed">
-                Be a role model for students exploring careers in women’s health. There are three ways to get involved, depending on what suits you:
+              <div className="h-px bg-white/30 my-1" />
+              <p className="text-base md:text-lg leading-snug">
+                Be a role model for students exploring careers in women’s health. There are <strong className="text-[#FDE047]">three ways to get involved</strong>, depending on what suits you:
               </p>
-              <ul className="space-y-2.5 text-sm md:text-base text-[#4A4045] pl-1">
-                <li className="flex items-start gap-2">
-                  <span className="text-[#D45995] font-bold">•</span>
-                  <span><strong>Written:</strong> share your thoughts and experiences in our newsletter, or answer student questions</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#D45995] font-bold">•</span>
-                  <span><strong>Recorded:</strong> contribute to our student-led content, such as an interviews or podcast conversations</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#D45995] font-bold">•</span>
-                  <span><strong>Live:</strong> join an online panel or webinar, or attend student events in person</span>
-                </li>
+              <ul className="space-y-3 text-base md:text-lg">
+                {[
+                  <><strong className="text-[#FDE047]">Written:</strong> share your thoughts and experiences in our newsletter, or answer student questions</>,
+                  <><strong className="text-[#FDE047]">Recorded:</strong> contribute to our student-led content, such as an interviews or podcast conversations</>,
+                  <><strong className="text-[#FDE047]">Live:</strong> join an online panel or webinar, or attend student events in person</>,
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <span aria-hidden="true" className="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-[#FDE047]" />
+                    <span className="leading-snug">{item}</span>
+                  </li>
+                ))}
               </ul>
-              <p className="text-sm md:text-base text-[#4A4045] leading-relaxed pt-1">
-                <strong className="text-[#1E1B1D]">What you get:</strong> a listing on the WHU website, visibility across our student chapters, and the chance to meet motivated students. There is no minimum commitment.
-              </p>
+              <div className="mt-2 rounded-2xl bg-white/15 p-5 text-base md:text-lg leading-snug">
+                <strong className="text-[#FDE047]">What you get:</strong> a listing on the WHU website, visibility across our student chapters, and the chance to meet motivated students. <strong className="text-[#FDE047]">There is no minimum commitment.</strong>
+              </div>
             </div>
 
           </div>
