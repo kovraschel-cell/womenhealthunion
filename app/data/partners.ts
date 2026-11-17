@@ -19,7 +19,7 @@ export interface PartnerProfile {
 const partners: PartnerProfile[] = [
   {
     name: "Katy Jackson",
-    about: "Katy is currently the Clinical Director of Women’s Health at Voy. She has served as Chief Clinical Officer and Operations Director at Newson Health, a menopause care provider. She also previously held senior NHS roles, including Director of Systems Resilience at Sussex Health and Care Partnership. Alongside being a women’s health advocate, Katy also mentors young women in leadership.",
+    about: "Katy is Clinical Director of Women’s Health at Voy, a global health technology company, where she leads the UK’s largest female hormonal health division, encompassing Voy Menopause and Menopause Care. She brings extensive clinical and operational leadership experience, having previously served as Chief Clinical Officer at Newson Health and held senior NHS roles, including Chief Operating Officer. A passionate advocate for women’s health, Katy also mentors young women in leadership, helping them build confidence and develop their careers.",
     logo: "/logos/katyjackson.jpg",
     links: [
       { label: "Website", url: "#" },
@@ -67,14 +67,6 @@ const partners: PartnerProfile[] = [
     links: [
       { label: "Website", url: "#" },
       { label: "Instagram", url: "#" },
-    ],
-  },
-  {
-    name: "Dr Maureen Emeagi",
-    about: "Dr Maureen Emeagi is an NHS GP and Lead Medical Advisor at Juno, a women’s health-focused digital health company. She provides clinical leadership to ensure Juno’s platform is safe, evidence-based and responsive to women’s health needs. With over 20 years of medical experience, including in gynaecology and obstetrics, she brings extensive clinical expertise to improving women’s healthcare.",
-    logo: "/logos/maureenemeagi.png",
-    links: [
-      { label: "LinkedIn", url: "#" },
     ],
   },
   {
