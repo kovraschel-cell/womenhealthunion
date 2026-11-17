@@ -123,7 +123,7 @@ export default function Home() {
     <main className="min-h-screen bg-[#F1EEF4] text-[#4A4045] font-sans selection:bg-[#E786B6] selection:text-white pb-24">
 
       {/* Navigation - Clean Modern Pill */}
-      <nav className="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-6xl z-50 rounded-2xl bg-white/90 backdrop-blur-md px-8 py-4 flex justify-between items-center shadow-lg border border-black/5">
+      <nav className="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-6xl z-50 rounded-2xl bg-white/90 backdrop-blur-md px-8 py-4 hidden md:flex justify-between items-center shadow-lg border border-black/5">
         <div className="font-extrabold text-2xl tracking-tighter text-[#D45995]">WHU</div>
         <div className="hidden md:flex gap-8 font-bold text-sm tracking-wide text-[#4A4045]">
           <a href="#about" onClick={scrollTo("about")} className="hover:text-[#D45995] transition-colors cursor-pointer">About</a>
@@ -138,7 +138,7 @@ export default function Home() {
       <div className="w-full bg-gradient-to-b from-[#D45995] from-20% to-[#F1EEF4] to-65%">
 
         {/* Section 1: Hero */}
-        <section className="w-full min-h-[calc(100svh-18rem)] pt-32 pb-8 md:pt-48 md:pb-20 relative">          <div className="w-full max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between px-6 gap-8 md:gap-12">
+        <section className="w-full min-h-[calc(100svh-18rem)] pt-14 pb-8 md:pt-48 md:pb-20 relative">          <div className="w-full max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between px-6 gap-8 md:gap-12">
           {/* Left side: Logo & Motto */}
           <div className="md:w-1/2 flex flex-col items-center text-center md:translate-y-6 md:-translate-x-4">            <h1 className="font-black text-[8rem] md:text-[clamp(12rem,18vw,14rem)] leading-[0.85] tracking-tighter text-white drop-shadow-[0_6px_10px_rgba(90,20,55,0.25)] select-none">
             WHU
@@ -149,10 +149,10 @@ export default function Home() {
           </div>
           {/* Right side: 5% Stat Card with Yellow Highlight */}
           <div className="md:w-1/2 flex justify-center md:justify-end w-full">
-            <div className="w-full max-w-lg bg-white text-[#1E1B1D] rounded-3xl p-8 md:p-10 shadow-xl border border-black/5 transform md:rotate-1 hover:rotate-0 transition-transform duration-300">
+            <div className="w-full max-w-lg bg-white text-[#1E1B1D] rounded-3xl p-6 md:p-10 shadow-xl border border-black/5 transform md:rotate-1 hover:rotate-0 transition-transform duration-300">
               <h3 className="font-bold leading-snug text-center md:text-left">
-                <span className="font-black text-[length:min(7.2vw,2.25rem)] md:text-5xl tracking-tight max-md:whitespace-nowrap block md:inline">
-                  <span className="text-[#D45995]">Fewer than </span><span className="text-[#EAB308]">5%</span>
+                <span className="font-black tracking-tight max-md:whitespace-nowrap block md:inline">
+                  <span className="text-[#D45995] text-[length:min(6.6vw,2.25rem)] md:text-5xl">Fewer than </span><span className="text-[#EAB308] text-[length:min(18vw,5rem)] md:text-5xl max-md:leading-none">5%</span>
                 </span>
                 <span className="text-[#1E1B1D] font-extrabold leading-snug block mt-1 text-2xl md:text-3xl max-md:text-balance">
                   of UK universities have women’s health societies. <span className="text-[#D45995] whitespace-nowrap">Let’s change this!</span>
@@ -487,7 +487,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
 
             {/* Start a Chapter */}
-            <div className="flex flex-col gap-4 rounded-3xl bg-[#EBEBEE] border border-black/10 text-[#1E1B1D] p-8 md:p-10 shadow-xl">
+            <div className="flex flex-col gap-4 rounded-3xl bg-[linear-gradient(to_top,#F6D6E7_0%,#EBEBEE_70%)] border border-black/10 text-[#1E1B1D] p-8 md:p-10 shadow-xl">
               <h3 className="font-black text-3xl md:text-5xl tracking-tight">
                 <span className="bg-[#FDE047] text-[#1E1B1D] px-3 py-1 rounded-xl box-decoration-clone leading-[1.5]">Start a Chapter</span>
               </h3>
@@ -495,7 +495,7 @@ export default function Home() {
                 Bring <span className="text-[#B03577]">women’s health</span> to your university, with everything ready so you’re not starting from zero.
               </p>
               <div className="h-px bg-black/15 my-1" />
-              <p className="font-extrabold text-sm uppercase tracking-[0.2em] text-[#B03577]">
+              <p className="font-extrabold text-xl md:text-2xl text-[#B03577] tracking-tight">
                 Every chapter gets:
               </p>
               <ul className="space-y-3 text-base md:text-lg">
@@ -507,7 +507,7 @@ export default function Home() {
                   <>A <strong className="text-[#B03577]">national network</strong> of chapters to collaborate and run events with</>,
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <span aria-hidden="true" className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-[#FDE047] text-[#1E1B1D] text-sm font-black">✓</span>
+                    <span aria-hidden="true" className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-[#B03577] text-white text-sm font-black">✓</span>
                     <span className="leading-snug">{item}</span>
                   </li>
                 ))}
@@ -515,7 +515,7 @@ export default function Home() {
             </div>
 
             {/* Become a Partner */}
-            <div className="flex flex-col gap-4 rounded-3xl bg-[#EBEBEE] border border-black/10 text-[#1E1B1D] p-8 md:p-10 shadow-xl">
+            <div className="flex flex-col gap-4 rounded-3xl bg-[linear-gradient(to_top,#F6D6E7_0%,#EBEBEE_70%)] border border-black/10 text-[#1E1B1D] p-8 md:p-10 shadow-xl">
               <h3 className="font-black text-3xl md:text-5xl tracking-tight">
                 <span className="bg-[#FDE047] text-[#1E1B1D] px-3 py-1 rounded-xl box-decoration-clone leading-[1.5]">Become a Partner</span>
               </h3>
