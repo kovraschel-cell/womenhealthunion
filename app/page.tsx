@@ -151,8 +151,8 @@ export default function Home() {
           <div className="md:w-1/2 flex justify-center md:justify-end w-full">
             <div className="w-full max-w-lg bg-white text-[#1E1B1D] rounded-3xl p-6 md:p-10 shadow-xl border border-black/5 transform md:rotate-1 hover:rotate-0 transition-transform duration-300">
               <h3 className="font-bold leading-snug text-center md:text-left">
-                <span className="font-black tracking-tight max-md:whitespace-nowrap block md:inline">
-                  <span className="text-[#D45995] text-[length:min(6.6vw,2.25rem)] md:text-5xl">Fewer than </span><span className="text-[#EAB308] text-[length:min(18vw,5rem)] md:text-5xl max-md:leading-none">5%</span>
+                <span className="font-black tracking-tight whitespace-nowrap block md:inline">
+                  <span className="text-[#D45995] text-[length:min(7.2vw,2.25rem)] md:text-[length:min(calc(6.6vw_-_21px),3rem)]">Fewer than </span><span className="text-[#EAB308] text-[length:min(15vw,4rem)] md:text-[length:min(calc(8.25vw_-_26px),3.75rem)] max-md:leading-none">5%</span>
                 </span>
                 <span className="text-[#1E1B1D] font-extrabold leading-snug block mt-1 text-2xl md:text-3xl max-md:text-balance">
                   of UK universities have women’s health societies. <span className="text-[#D45995] whitespace-nowrap">Let’s change this!</span>
@@ -487,37 +487,39 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
 
             {/* Start a Chapter */}
-            <div className="flex flex-col gap-4 rounded-3xl bg-[linear-gradient(to_top,#F6D6E7_0%,#EBEBEE_70%)] border border-black/10 text-[#1E1B1D] p-8 md:p-10 shadow-xl">
+            <div className="flex flex-col gap-4 rounded-3xl bg-[linear-gradient(to_top,#F6D6E7_0%,#EBEBEE_70%)] border-2 border-[#D45995] text-[#1E1B1D] p-8 md:p-10 shadow-xl">
               <h3 className="font-black text-3xl md:text-5xl tracking-tight">
-                <span className="bg-[#FDE047] text-[#1E1B1D] px-3 py-1 rounded-xl box-decoration-clone leading-[1.5]">Start a Chapter</span>
+                <span className="bg-[#FDE047] text-[#1E1B1D] px-3 py-1 rounded-none box-decoration-clone leading-[1.5]">Start a Chapter</span>
               </h3>
               <p className="text-lg md:text-xl font-semibold leading-snug">
                 Bring <span className="text-[#B03577]">women’s health</span> to your university, with everything ready so you’re not starting from zero.
               </p>
               <div className="h-px bg-black/15 my-1" />
-              <p className="font-extrabold text-xl md:text-2xl text-[#B03577] tracking-tight">
-                Every chapter gets:
-              </p>
-              <ul className="space-y-3 text-base md:text-lg">
-                {[
-                  <><strong className="text-[#B03577]">The WHU Chapter Starter Kit:</strong> branded templates, trackers and everything you need to launch a society</>,
-                  <>Ready-made event formats, including a full <strong className="text-[#B03577]">hackathon guide</strong></>,
-                  <>A <strong className="text-[#B03577]">monthly newsletter</strong> with opportunities in women’s health</>,
-                  <>Direct connections to <strong className="text-[#B03577]">partners</strong> for talks and collaborations</>,
-                  <>A <strong className="text-[#B03577]">national network</strong> of chapters to collaborate and run events with</>,
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <span aria-hidden="true" className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-[#B03577] text-white text-sm font-black">✓</span>
-                    <span className="leading-snug">{item}</span>
-                  </li>
-                ))}
-              </ul>
+              <div className="rounded-2xl bg-white border border-black/5 p-5 md:p-6 flex flex-col gap-4">
+                  <p className="font-extrabold text-xl md:text-2xl text-[#B03577] tracking-tight">
+                  Every chapter gets:
+                </p>
+                <ul className="space-y-3 text-base md:text-lg">
+                  {[
+                    <><strong className="text-[#B03577]">The WHU Chapter Starter Kit:</strong> branded templates, trackers and everything you need to launch a society</>,
+                    <>Ready-made event formats, including a full <strong className="text-[#B03577]">hackathon guide</strong></>,
+                    <>A <strong className="text-[#B03577]">monthly newsletter</strong> with opportunities in women’s health</>,
+                    <>Direct connections to <strong className="text-[#B03577]">partners</strong> for talks and collaborations</>,
+                    <>A <strong className="text-[#B03577]">national network</strong> of chapters to collaborate and run events with</>,
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-start gap-3">
+                      <span aria-hidden="true" className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-[#B03577] text-white text-sm font-black">✓</span>
+                      <span className="leading-snug">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
 
             {/* Become a Partner */}
-            <div className="flex flex-col gap-4 rounded-3xl bg-[linear-gradient(to_top,#F6D6E7_0%,#EBEBEE_70%)] border border-black/10 text-[#1E1B1D] p-8 md:p-10 shadow-xl">
+            <div className="flex flex-col gap-4 rounded-3xl bg-[linear-gradient(to_top,#F6D6E7_0%,#EBEBEE_70%)] border-2 border-[#D45995] text-[#1E1B1D] p-8 md:p-10 shadow-xl">
               <h3 className="font-black text-3xl md:text-5xl tracking-tight">
-                <span className="bg-[#FDE047] text-[#1E1B1D] px-3 py-1 rounded-xl box-decoration-clone leading-[1.5]">Become a Partner</span>
+                <span className="bg-[#FDE047] text-[#1E1B1D] px-3 py-1 rounded-none box-decoration-clone leading-[1.5]">Become a Partner</span>
               </h3>
               <p className="text-lg md:text-xl font-semibold leading-snug">
                 Join a network of <span className="text-[#B03577]">women’s health professionals, founders and advocates</span> inspiring future innovators.
