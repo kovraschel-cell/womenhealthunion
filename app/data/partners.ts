@@ -87,14 +87,6 @@ const partners: PartnerProfile[] = [
     ],
   },
   {
-    name: "Noshina Kiani",
-    about: "Noshina Kiani is a women’s health advocate and community health leader, co-leading the Health and Wellbeing directorate at Yorkshire Women’s Forum CIC. Her work focuses on improving health equity for underserved women, particularly South Asian communities, through culturally sensitive education and community-led support. She has developed initiatives addressing menopause awareness, preventative health and access to care, championing women’s voices and lived experiences to improve health outcomes.",
-    logo: "/logos/noshinakiani.png",
-    links: [
-      { label: "Website", url: "#" },
-    ],
-  },
-  {
     name: "Sophie Sulehria",
     about: "Sophie Sulehria is a journalist, presenter and women’s health advocate with over 20 years of experience in media, including a decade at the BBC. She champions women’s health through journalism, podcasting and digital storytelling, with a particular focus on menopause, fertility and women’s rights in the workplace. She creates video content and presents The Heat Seat podcast for Menopause Mandate, helping to raise awareness, amplify women’s voices and make expert insights accessible.",
     logo: "/logos/sophiesulehria.png",
