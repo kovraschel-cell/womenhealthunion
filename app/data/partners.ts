@@ -19,7 +19,7 @@ export interface PartnerProfile {
 const partners: PartnerProfile[] = [
   {
     name: "Katy Jackson",
-    about: "Katy is Clinical Director of Women’s Health at Voy, a global health technology company, where she leads the UK’s largest female hormonal health division, encompassing Voy Menopause and Menopause Care. She brings extensive clinical and operational leadership experience, having previously served as Chief Clinical Officer at Newson Health and held senior NHS roles, including Chief Operating Officer. A passionate advocate for women’s health, Katy also mentors young women in leadership, helping them build confidence and develop their careers.",
+    about: "Katy is currently the Clinical Director of Women’s Health at Voy. She has served as Chief Clinical Officer and Operations Director at Newson Health, a menopause care provider. She also previously held senior NHS roles, including Director of Systems Resilience at Sussex Health and Care Partnership. Alongside being a women’s health advocate, Katy also mentors young women in leadership.",
     logo: "/logos/katyjackson.jpg",
     links: [
       { label: "Website", url: "#" },
@@ -70,12 +70,28 @@ const partners: PartnerProfile[] = [
     ],
   },
   {
+    name: "Dr Maureen Emeagi",
+    about: "Dr Maureen Emeagi is an NHS GP and Lead Medical Advisor at Juno, a women’s health-focused digital health company. She provides clinical leadership to ensure Juno’s platform is safe, evidence-based and responsive to women’s health needs. With over 20 years of medical experience, including in gynaecology and obstetrics, she brings extensive clinical expertise to improving women’s healthcare.",
+    logo: "/logos/maureenemeagi.png",
+    links: [
+      { label: "LinkedIn", url: "#" },
+    ],
+  },
+  {
     name: "Laura Sullivan",
-    about: "Laura Sullivan is a women’s health advocate and researcher with an MSc in Psychology, specialising in women’s experiences of identity across the menstrual cycle. She is co-founder and lead researcher of We Are Together, an online platform supporting couples through miscarriage and early pregnancy loss. Her work centres on lived experience, inclusive support and addressing gaps in care for women and their families.",
-    logo: "/logos/laurasullivan.png",
+    about: "Laura Sullivan is a women’s health advocate and researcher with an MSc in Psychology, specialising in women’s experiences of identity across the menstrual cycle. She is co-founder and lead researcher of We Are Together, an app in development supporting couples through miscarriage and early pregnancy loss. Her work centres on lived experience, inclusive support and addressing gaps in care for women and their families.",
+    logo: "/logos/laurasullivan1.png",
     links: [
       { label: "Website", url: "#" },
       { label: "Instagram", url: "#" },
+    ],
+  },
+  {
+    name: "Noshina Kiani",
+    about: "Noshina Kiani is a women’s health advocate and community health leader, co-leading the Health and Wellbeing directorate at Yorkshire Women’s Forum CIC. Her work focuses on improving health equity for underserved women, particularly South Asian communities, through culturally sensitive education and community-led support. She has developed initiatives addressing menopause awareness, preventative health and access to care, championing women’s voices and lived experiences to improve health outcomes.",
+    logo: "/logos/noshinakiani.png",
+    links: [
+      { label: "Website", url: "#" },
     ],
   },
   {
