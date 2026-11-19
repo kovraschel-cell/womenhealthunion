@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useEffect } from "react";
 import dynamic from "next/dynamic";
-import { Mail, AtSign, Camera, X } from "lucide-react";
+import { Mail, AtSign, X } from "lucide-react";
 import partnersBase from "./data/partners";
 
 const StudentChapterMap = dynamic(() => import("./components/StudentChapterMap"), { ssr: false });
@@ -10,15 +10,59 @@ const StudentChapterMap = dynamic(() => import("./components/StudentChapterMap")
 const chapters = [
   {
     university: "University of Sheffield", city: "Sheffield", active: true, logo: "/logos/sheflogo.png", lat: 53.3811, lng: -1.4701,
-    committee: [
-      { role: "President", name: "Janvi Ranish", course: "Biomedical Engineering", email: "jranish1@sheffield.ac.uk" },
+    email: "WomensHealthUnion.soc@sheffield.ac.uk",
+    instagram: "https://www.instagram.com/whu_sheffield/",
+  },
+];
+
+// ---- Success stories. Put the images in public/stories/ with the file names below.
+// Wrap a phrase in **double asterisks** to show it in magenta.
+const successStories = [
+  {
+    id: "endopad",
+    title: "From Student Collaboration to Award-Winning Innovation",
+    image: "/stories/endopad.jpg",
+    paragraphs: [
+      "At a women's health hackathon organised by the founder of WHU, a group of students came together to explore challenges in women's healthcare. Their team chose to focus on **endometriosis**, developing an idea for a **diagnostic kit that uses biomarkers in menstrual blood** to help make diagnosis faster and more accessible.",
+      "After winning the hackathon, the students took the initiative to develop their idea further, entering the University of Sheffield's entrepreneurship competition, where they went on to win the **Conceptual Idea Award**. The team continues to develop their concept, **EndoPad**, with the ambition of bringing their idea closer to reality.",
+      "This is the kind of impact the WHU exists to create: **empowering students** to identify gaps in women's health, **collaborate across disciplines**, and turn ideas into meaningful innovation.",
+      "The Women's Health Union's flagship hackathon will return through its student chapters, creating more opportunities for students to innovate and develop solutions to challenges in women's health. We hope to see many more success stories like this emerge!",
+    ],
+  },
+  {
+    id: "red-bank",
+    title: "From Hackathon Networking to Professional Opportunity",
+    image: "/stories/red-bank.jpg",
+    paragraphs: [
+      "At a women's health hackathon organised by the founder of WHU, Biomedical Science student **Aditi Murthy** explored the potential of **menstrual blood biomarkers** for diagnosing conditions such as endometriosis.",
+      "Following the hackathon, Aditi connected with one of the professional panellists from **Health Innovation Yorkshire & Humber**. Taking the initiative to build on this connection, she successfully **secured an internship** with the organisation, where she has gained valuable experience in health innovation, research and translating scientific ideas into real-world patient impact.",
+      "Aditi has since continued exploring women's health innovation, developing **Red Bank**, a diagnostic concept investigating how menstrual blood biomarkers could support earlier detection of conditions including endometriosis and cardiovascular disease.",
+      "Her journey highlights how **bringing students and professionals together** around women's health can spark new connections, support emerging ideas and open doors to opportunities beyond the university.",
     ],
   },
 ];
 
+const magentaKeywords = (text: string) =>
+  text.split(/(\*\*[^*]+\*\*)/g).map((part, i) =>
+    part.startsWith("**") ? (
+      <strong key={i} className="font-bold text-[#B03577]">{part.slice(2, -2)}</strong>
+    ) : (
+      part
+    )
+  );
+
+const InstagramIcon = ({ size = 48 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <rect x="3" y="3" width="18" height="18" rx="5" />
+    <circle cx="12" cy="12" r="4.2" />
+    <circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none" />
+  </svg>
+);
+
 
 export default function Home() {
   const [selectedChapter, setSelectedChapter] = useState<any>(null);
+  const [activeStory, setActiveStory] = useState<(typeof successStories)[number] | null>(null);
   const [viewMode, setViewMode] = useState<"list" | "map">("list");
   const [showAllPartners, setShowAllPartners] = useState(false);
   const [partnerPage, setPartnerPage] = useState(1);
@@ -248,6 +292,9 @@ export default function Home() {
                     </div>
                   </button>
                 ))}
+                <p className="w-full text-center text-sm md:text-base font-semibold text-[#7C6E76] pt-2">
+                  More student chapters coming soon
+                </p>
               </div>
             ) : (
               <StudentChapterMap chapters={chapters} onChapterClick={setSelectedChapter} />
@@ -547,7 +594,7 @@ export default function Home() {
 
           </div>
 
-          <p className="text-center text-lg md:text-xl font-bold text-[#1E1B1D] mt-8">
+          <p className="text-center text-2xl md:text-3xl font-bold text-[#1E1B1D] mt-10">
             Interested in either?{" "}
             <a
               href="#contact"
@@ -557,6 +604,45 @@ export default function Home() {
               Get in touch ↓
             </a>
           </p>
+        </section>
+
+        {/* Section: Success Stories */}
+        <section id="success-stories" className="scroll-mt-28 px-2 md:px-4 py-10 md:py-14">
+          <div className="text-center mb-10">
+            <h2 className="font-extrabold text-2xl md:text-4xl text-[#1E1B1D] tracking-tight">
+              Success Stories
+            </h2>
+          </div>
+          <div className="flex flex-wrap justify-center gap-8 max-w-4xl mx-auto">
+            {successStories.map((story) => (
+              <div
+                key={story.id}
+                role="button"
+                tabIndex={0}
+                aria-label={`Read: ${story.title}`}
+                onClick={() => setActiveStory(story)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setActiveStory(story);
+                  }
+                }}
+                className="relative w-full md:w-[calc(50%-1rem)] h-72 md:h-80 rounded-2xl bg-gradient-to-br from-[#D45995] to-[#8C3E73] shadow-md hover:shadow-xl transition-shadow duration-300 group overflow-hidden cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D45995]"
+              >
+                <img
+                  src={story.image}
+                  alt=""
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  onError={(e) => { e.currentTarget.style.display = "none"; }}
+                />
+                <div className="absolute inset-0 bg-[#D45995]/90 flex items-center justify-center p-8 opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-300">
+                  <h3 className="text-white font-extrabold text-xl md:text-2xl text-center leading-snug">
+                    {story.title}
+                  </h3>
+                </div>
+              </div>
+            ))}
+          </div>
         </section>
 
         {/* Section 4: Contact — full width, one row */}
@@ -696,7 +782,7 @@ export default function Home() {
             onClick={() => setSelectedChapter(null)}
           >
             <div
-              className="modal-pop w-full max-w-5xl bg-white rounded-3xl p-8 md:p-12 shadow-2xl border border-black/10 relative flex flex-col md:flex-row"
+              className="modal-pop w-full max-w-5xl md:min-h-[540px] bg-white rounded-3xl p-8 md:p-12 shadow-2xl border border-black/10 relative flex flex-col md:flex-row"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Close button */}
@@ -723,38 +809,32 @@ export default function Home() {
                   <h3 className="font-extrabold text-2xl md:text-4xl text-[#1E1B1D] pr-12">{selectedChapter.university}</h3>
                 </div>
 
-                {/* Leadership Committee grid */}
-                <div className="w-full">
-                  <h4 className="font-extrabold text-base uppercase tracking-[0.15em] text-[#D45995] mb-4">Leadership Committee</h4>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {selectedChapter.committee?.map((member: any, idx: number) => (
-                      <div
-                        key={idx}
-                        className="flex flex-col gap-1.5 p-5 rounded-2xl bg-[#F1EEF4]/60 border border-black/5 hover:bg-white hover:shadow-md hover:border-[#D45995]/20 transition-all duration-200"
-                      >
-                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#D45995]">{member.role}</span>
-                        <span className="font-extrabold text-lg text-[#1E1B1D] leading-tight">{member.name}</span>
-                        <span className="text-xs text-[#7C6E76] font-medium">{member.course}</span>
-                        <a
-                          href={`mailto:${member.email}`}
-                          className="mt-1 text-xs font-semibold text-[#D45995] hover:underline truncate"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          {member.email}
-                        </a>
-                      </div>
-                    ))}
+                {/* Leadership committee + Instagram */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="flex flex-col justify-center gap-2 p-6 rounded-2xl bg-[#F1EEF4]/60 border border-black/5">
+                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#D45995]">Contact</span>
+                    <span className="font-extrabold text-xl text-[#1E1B1D] leading-tight">Leadership Committee</span>
+                    <a
+                      href={`mailto:${selectedChapter.email}`}
+                      className="text-sm font-semibold text-[#D45995] hover:underline break-all"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      {selectedChapter.email}
+                    </a>
                   </div>
-                </div>
-
-                {/* Social icons */}
-                <div className="flex gap-4 pt-2">
-                  <a href="#" className="w-12 h-12 rounded-xl bg-[#F1EEF4] hover:bg-[#D45995] hover:text-white text-[#1E1B1D] flex items-center justify-center transition-colors">
-                    <Mail size={20} />
-                  </a>
-                  <a href="#" className="w-12 h-12 rounded-xl bg-[#F1EEF4] hover:bg-[#D45995] hover:text-white text-[#1E1B1D] flex items-center justify-center transition-colors">
-                    <Camera size={20} />
-                  </a>
+                  {selectedChapter.instagram && (
+                    <a
+                      href={selectedChapter.instagram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${selectedChapter.university} on Instagram`}
+                      className="flex flex-col items-center justify-center gap-2 p-6 rounded-2xl bg-[#F1EEF4]/60 border border-black/5 text-[#1E1B1D] hover:bg-[#D45995] hover:text-white hover:shadow-md transition-all duration-200"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <InstagramIcon size={64} />
+                      <span className="text-sm font-bold">Follow on Instagram</span>
+                    </a>
+                  )}
                 </div>
 
               </div>
@@ -762,6 +842,48 @@ export default function Home() {
           </div>
         )
       }
+
+      {/* Success Story Modal */}
+      {activeStory && (
+        <div
+          className="fixed inset-0 z-[100] bg-black/40 backdrop-blur-sm flex items-center justify-center p-4 md:p-6"
+          onClick={() => setActiveStory(null)}
+        >
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-label={activeStory.title}
+            className="modal-pop w-full max-w-5xl max-h-[90vh] overflow-y-auto bg-white rounded-3xl shadow-2xl border border-black/10 relative flex flex-col md:flex-row"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/90 hover:bg-[#F1EEF4] text-[#1E1B1D] flex items-center justify-center transition-colors cursor-pointer z-10 shadow"
+              onClick={() => setActiveStory(null)}
+              aria-label="Close"
+            >
+              <X size={20} />
+            </button>
+            <div className="md:w-2/5 flex-shrink-0 h-56 md:h-auto relative bg-gradient-to-br from-[#D45995] to-[#8C3E73] md:rounded-l-3xl rounded-t-3xl md:rounded-tr-none overflow-hidden">
+              <img
+                src={activeStory.image}
+                alt=""
+                className="absolute inset-0 w-full h-full object-cover"
+                onError={(e) => { e.currentTarget.style.display = "none"; }}
+              />
+            </div>
+            <div className="flex-1 p-6 md:p-10 flex flex-col gap-4">
+              <h3 className="font-extrabold text-2xl md:text-3xl text-[#1E1B1D] leading-tight pr-10">
+                {activeStory.title}
+              </h3>
+              {activeStory.paragraphs.map((para, i) => (
+                <p key={i} className="text-base md:text-lg text-[#4A4045] leading-relaxed">
+                  {magentaKeywords(para)}
+                </p>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
 
     </main >
   );
