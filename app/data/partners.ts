@@ -71,7 +71,7 @@ const partners: PartnerProfile[] = [
   },
   {
     name: "Laura Sullivan",
-    about: "Laura Sullivan is a women’s health advocate and researcher with an MSc in Psychology, specialising in women’s experiences of identity across the menstrual cycle. She is co-founder and lead researcher of We Are Together, an app in development supporting couples through miscarriage and early pregnancy loss. Her work centres on lived experience, inclusive support and addressing gaps in care for women and their families.",
+    about: "Laura Sullivan is a women’s health advocate and researcher with an MSc in Psychology, specialising in women’s experiences of identity across the menstrual cycle. She is co-founder and lead researcher of We Are Together, an online platform supporting couples through miscarriage and early pregnancy loss. Her work centres on lived experience, inclusive support and addressing gaps in care for women and their families.",
     logo: "/logos/laurasullivan.png",
     links: [
       { label: "Website", url: "#" },
