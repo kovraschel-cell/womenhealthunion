@@ -32,7 +32,7 @@ const successStories = [
   {
     id: "red-bank",
     title: "From Hackathon Networking to Professional Opportunity",
-    image: "/red-bank.jpg",
+    image: "/red-bank1.jpg",
     paragraphs: [
       "At a women's health hackathon organised by the founder of WHU, Biomedical Science student **Aditi Murthy** explored the potential of **menstrual blood biomarkers** for diagnosing conditions such as endometriosis.",
       "Following the hackathon, Aditi connected with one of the professional panellists from **Health Innovation Yorkshire & Humber**. Taking the initiative to build on this connection, she successfully **secured an internship** with the organisation, where she has gained valuable experience in health innovation, research and translating scientific ideas into real-world patient impact.",
