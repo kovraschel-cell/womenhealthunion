@@ -32,7 +32,7 @@ const successStories = [
   {
     id: "red-bank",
     title: "From Hackathon Networking to Professional Opportunity",
-    image: "/red-bank1.jpg",
+    image: "/red-bank1.jpeg",
     paragraphs: [
       "At a women's health hackathon organised by the founder of WHU, Biomedical Science student **Aditi Murthy** explored the potential of **menstrual blood biomarkers** for diagnosing conditions such as endometriosis.",
       "Following the hackathon, Aditi connected with one of the professional panellists from **Health Innovation Yorkshire & Humber**. Taking the initiative to build on this connection, she successfully **secured an internship** with the organisation, where she has gained valuable experience in health innovation, research and translating scientific ideas into real-world patient impact.",
@@ -635,6 +635,7 @@ export default function Home() {
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   onError={(e) => { e.currentTarget.style.display = "none"; }}
                 />
+                <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
                 <div className="absolute inset-0 bg-[#D45995]/90 flex items-center justify-center p-8 opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-300">
                   <h3 className="text-white font-extrabold text-xl md:text-2xl text-center leading-snug">
                     {story.title}
@@ -870,6 +871,7 @@ export default function Home() {
                 className="absolute inset-0 w-full h-full object-cover"
                 onError={(e) => { e.currentTarget.style.display = "none"; }}
               />
+              <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
             </div>
             <div className="flex-1 p-6 md:p-10 flex flex-col gap-4">
               <h3 className="font-extrabold text-2xl md:text-3xl text-[#1E1B1D] leading-tight pr-10">
