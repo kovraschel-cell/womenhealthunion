@@ -15,13 +15,13 @@ const chapters = [
   },
 ];
 
-// ---- Success stories. Put the images in public/stories/ with the file names below.
+// ---- Success stories. Put the images in public/ with the file names below.
 // Wrap a phrase in **double asterisks** to show it in magenta.
 const successStories = [
   {
     id: "endopad",
     title: "From Student Collaboration to Award-Winning Innovation",
-    image: "/stories/endopad.jpg",
+    image: "/endopad.jpg",
     paragraphs: [
       "At a women's health hackathon organised by the founder of WHU, a group of students came together to explore challenges in women's healthcare. Their team chose to focus on **endometriosis**, developing an idea for a **diagnostic kit that uses biomarkers in menstrual blood** to help make diagnosis faster and more accessible.",
       "After winning the hackathon, the students took the initiative to develop their idea further, entering the University of Sheffield's entrepreneurship competition, where they went on to win the **Conceptual Idea Award**. The team continues to develop their concept, **EndoPad**, with the ambition of bringing their idea closer to reality.",
@@ -32,7 +32,7 @@ const successStories = [
   {
     id: "red-bank",
     title: "From Hackathon Networking to Professional Opportunity",
-    image: "/stories/red-bank.jpg",
+    image: "/red-bank.jpg",
     paragraphs: [
       "At a women's health hackathon organised by the founder of WHU, Biomedical Science student **Aditi Murthy** explored the potential of **menstrual blood biomarkers** for diagnosing conditions such as endometriosis.",
       "Following the hackathon, Aditi connected with one of the professional panellists from **Health Innovation Yorkshire & Humber**. Taking the initiative to build on this connection, she successfully **secured an internship** with the organisation, where she has gained valuable experience in health innovation, research and translating scientific ideas into real-world patient impact.",
